@@ -31,7 +31,21 @@ StartButton, HowToPlayButton, ShareAppButton {
     padding: 3mm;
     text-align: left;
     font-size: 4mm;
-    font-size: 4mm;
     font-weight: bold;
     border: 1px white cn1-pill-border;
+}
+
+HowToPlayScreen {
+    padding: 5mm;
+}
+
+HowToPlayScreenToolbarTitle {
+    color: var(--primary-color);
+    font-size: 3mm;
+    font-weight: bold;
+}
+
+Instruction {
+    font-size: 4mm;
+    color: #080010;
 }

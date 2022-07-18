@@ -12,7 +12,7 @@ public class WelcomeScreen extends Form {
     public WelcomeScreen() {
         this.getToolbar().hideToolbar();
         this.setLayout(BoxLayout.y());
-        this.setScrollableY(false);
+        this.setScrollable(false);
         this.setUIID("WelcomeScreen");
         addComponents();
     }
@@ -34,6 +34,10 @@ public class WelcomeScreen extends Form {
         howToPlayButton.setMaterialIcon(FontImage.MATERIAL_HELP_OUTLINE, 8);
         howToPlayButton.setGap(48);
         howToPlayButton.setUIID("HowToPlayButton");
+        howToPlayButton.addActionListener(e -> {
+            HowToPlayScreen howToPlayScreen = new HowToPlayScreen();
+            howToPlayScreen.show();
+        });
 
         Button shareAppButton = new Button("Share this app");
         shareAppButton.setMaterialIcon(FontImage.MATERIAL_SHARE, 6);
