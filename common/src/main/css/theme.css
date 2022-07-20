@@ -7,13 +7,21 @@
     --fail-color: #EB1622;
 }
 
+/** IMPORT IMAGES TO PROJECT */
 Images {
-    background-image: url(images/welcomeScreenImage.png);
+    background-image: url(images/welcomeScreenImage.png),
+                      url(images/face-with-tears-of-joy-emoji.png);
 }
 
+
+/** WELCOME SCREEN STYLES */
 WelcomeScreen {
     cn1-derive: Form;
     background-color: var(--primary-color);
+}
+
+PageWrapper {
+    cn1-derive: Container;
     padding: 5mm;
 }
 
@@ -35,8 +43,11 @@ StartButton, HowToPlayButton, ShareAppButton {
     border: 1px white cn1-pill-border;
 }
 
+
+/** HOW TO PLAY SCREEN STYLES */
 HowToPlayScreen {
-    padding: 5mm;
+    cn1-derive: Form;
+    background-color: #FFFFFF;
 }
 
 HowToPlayScreenToolbarTitle {
@@ -46,6 +57,125 @@ HowToPlayScreenToolbarTitle {
 }
 
 Instruction {
+    cn1-derive: SpanLabel;
     font-size: 4mm;
     color: #080010;
+    padding: 4mm;
+}
+
+
+/** QUESTION SCREEN STYLES */
+QuestionScreen {
+    cn1-derive: Form;
+    background-color: #FCF7F7;
+}
+
+TopContainer {
+    cn1-derive: Container;
+    padding: 3mm;
+}
+
+@media platform-and {
+    TopContainer {
+        cn1-derive: Container;
+        padding: 4mm;
+        margin-top: 2mm;
+    }
+}
+
+@media platform-ios {
+    TopContainer {
+        cn1-derive: Container;
+        padding: 4mm;
+        margin-top: 5mm;
+    }
+}
+
+QuestionProgress {
+    cn1-derive: Label;
+    color: #EE8100;
+    font-weight: normal;
+    font-size: 3mm;
+    text-align: left;
+}
+
+ScoreLabel {
+    cn1-derive: Label;
+    color: #151515;
+    font-weight: normal;
+    font-size: 3mm;
+    text-align: right;
+}
+
+QuestionImageContainer {
+    cn1-derive: Label;
+    text-align: center;
+    margin-top: 4mm;
+    margin-bottom: 4mm;
+}
+
+OptionContainer {
+    cn1-derive: Container;
+    padding-left: 4mm;
+    padding-right: 4mm;
+}
+
+
+Option1, Option2, Option3 {
+    cn1-derive: RadioButton;
+    padding: 4mm;
+    font-weight: bold;
+    font-size: 4mm;
+    margin-bottom: 4mm;
+    border-color: white;
+    border-radius: 25mm;
+    box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);
+}
+
+Option1.unselected, Option2.unselected, Option3.unselected {
+    cn1-derive: RadioButton;
+    background-color: white;
+    color: var(--primary-color);
+}
+
+Option1.pressed, Option2.pressed, Option3.pressed {
+    cn1-derive: RadioButton;
+    padding: 4mm;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 4mm;
+    border-radius: 25mm;
+    box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);
+}
+
+Option1.selected, Option2.selected, Option3.selected {
+    cn1-derive: RadioButton;
+    padding: 4mm;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    font-size: 4mm;
+    border-radius: 25mm;
+    box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);
+}
+
+Option3 {
+    margin-bottom: 0;
+}
+
+
+BottomContainer {
+    cn1-derive: Container;
+    padding-left: 5mm;
+    padding-right: 5mm;
+    margin-top: 6mm;
+}
+
+QuitButton, NextButton {
+    cn1-derive: Button;
+    padding: 2mm 4mm 3mm 3mm;
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);
 }

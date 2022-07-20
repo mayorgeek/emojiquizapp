@@ -37,6 +37,7 @@ public class HowToPlayScreen extends Form {
         SpanLabel instruction = new SpanLabel("Choose from the options provided, the correct name (or expression) of the emoji displayed on the screen.");
         instruction.setTextUIID("Instruction");
 
+        // ADDING COMPONENTS TO THE FORM
         this.add(instruction);
     }
 
