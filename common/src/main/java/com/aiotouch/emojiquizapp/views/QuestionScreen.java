@@ -1,20 +1,35 @@
 package com.aiotouch.emojiquizapp.views;
 
+import com.aiotouch.emojiquizapp.controllers.QuestionScreenController;
 import com.codename1.ui.*;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 
 public class QuestionScreen extends Form {
 
+    public QuestionScreenController controller;
+    public Label questionImageContainer;
+    public ButtonGroup optionGroup;
+    public RadioButton option1;
+    public RadioButton option2;
+    public RadioButton option3;
+    public Button quitButton;
+    public Button nextButton;
+    public Label scoreLabel;
+    public Label questionProgress;
+
     public QuestionScreen() {
         this.setLayout(BoxLayout.y());
-        this.setScrollable(false);
         this.setUIID("QuestionScreen");
 
         this.getToolbar().hideToolbar();    // HIDE THE TOOLBAR
 
         addComponents();
+        this.controller = new QuestionScreenController(this);
+        setListeners();
     }
 
     private void addComponents() {
@@ -24,22 +39,20 @@ public class QuestionScreen extends Form {
         topContainer.setUIID("TopContainer");
 
         // QUESTION PROGRESS COMPONENT IN TOPCONTAINER
-        Label questionProgress = new Label();
-        questionProgress.setText("Question 1/30");
-        questionProgress.setUIID("QuestionProgress");
+        this.questionProgress = new Label();
+        this.questionProgress.setUIID("QuestionProgress");
 
         // SCORE LABEL COMPONENT IN TOPCONTAINER
-        Label scoreLabel = new Label();
-        scoreLabel.setText("Score: 30");
-        scoreLabel.setUIID("ScoreLabel");
+        this.scoreLabel = new Label();
+        this.scoreLabel.setUIID("ScoreLabel");
 
         // ADD QUESTION PROGRESS AND SCORE LABEL TO TOPCONTAINER
-        topContainer.add(BorderLayout.WEST, questionProgress);
-        topContainer.add(BorderLayout.EAST, scoreLabel);
+        topContainer.add(BorderLayout.WEST, this.questionProgress);
+        topContainer.add(BorderLayout.EAST, this.scoreLabel);
 
 
         /* EMOJI IMAGE SECTION */
-        Label questionImageContainer = new Label();
+        this.questionImageContainer = new Label();
         Image questionImage = Resources.getGlobalResources().getImage("face-with-tears-of-joy-emoji.png");
         questionImage = questionImage.scaled(500, 500);
         questionImageContainer.setIcon(questionImage);
@@ -47,33 +60,34 @@ public class QuestionScreen extends Form {
 
         /* OPTIONS SECTION */
         Container optionContainer = new Container(BoxLayout.y());
-        optionContainer.setUIID("OptionContainer");//
+        optionContainer.setUIID("OptionContainer");
 
-        RadioButton option1 = new RadioButton("Face with tears of joy");
-        option1.setUIID("Option1");
+        this.option1 = new RadioButton();
+        this.option1.setUIID("Option1");
 
-        RadioButton option2 = new RadioButton("Something here");
-        option2.setUIID("Option2");
+        this.option2 = new RadioButton();
+        this.option2.setUIID("Option2");
 
-        RadioButton option3 = new RadioButton("Nothing Here");
-        option3.setUIID("Option3");
+        this.option3 = new RadioButton();
+        this.option3.setUIID("Option3");
 
         optionContainer.add(option1).add(option2).add(option3);
-        new ButtonGroup(option1, option2, option3);
+        this.optionGroup = new ButtonGroup(option1, option2, option3);
 
         /* BOTTOM CONTAINER SECTION */
         Container bottomContainer = new Container(new BorderLayout());
         bottomContainer.setUIID("BottomContainer");
 
-        Button quitButton = new Button("Quit");
-        quitButton.setUIID("QuitButton");
+        this.quitButton = new Button("Quit");
+        this.quitButton.setUIID("QuitButton");
 
-        Button nextButton = new Button();
-        nextButton.setUIID("NextButton");
-        nextButton.setMaterialIcon(FontImage.MATERIAL_ARROW_FORWARD, 5);
+        this.nextButton = new Button();
+        this.nextButton.setEnabled(false);
+        this.nextButton.setUIID("NextButton");
+        this.nextButton.setMaterialIcon(FontImage.MATERIAL_ARROW_FORWARD, 5);
 
-        bottomContainer.add(BorderLayout.WEST, quitButton);
-        bottomContainer.add(BorderLayout.EAST, nextButton);
+        bottomContainer.add(BorderLayout.WEST, this.quitButton);
+        bottomContainer.add(BorderLayout.EAST, this.nextButton);
 
 
         // ADDING COMPONENTS TO THE FORM
@@ -81,6 +95,13 @@ public class QuestionScreen extends Form {
         this.add(questionImageContainer);
         this.add(optionContainer);
         this.add(bottomContainer);
+    }
+
+    public void setListeners() {
+        this.optionGroup.addActionListener(controller);
+
+        this.nextButton.addActionListener(controller);
+        this.quitButton.addActionListener(controller);
     }
 
 }

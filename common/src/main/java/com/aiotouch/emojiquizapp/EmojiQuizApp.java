@@ -12,14 +12,8 @@ import com.codename1.system.Lifecycle;
 public class EmojiQuizApp extends Lifecycle {
     @Override
     public void runApp() {
-//        WelcomeScreen welcomeScreen = new WelcomeScreen();
-//        welcomeScreen.show();
-
-//        HowToPlayScreen hwtps = new HowToPlayScreen();
-//        hwtps.show();
-
-        QuestionScreen qs = new QuestionScreen();
-        qs.show();
+        WelcomeScreen welcomeScreen = new WelcomeScreen();
+        welcomeScreen.show();
     }
 
 }
