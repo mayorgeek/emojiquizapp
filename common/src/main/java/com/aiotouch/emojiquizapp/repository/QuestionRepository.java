@@ -1,17 +1,37 @@
 package com.aiotouch.emojiquizapp.repository;
 
-import com.aiotouch.emojiquizapp.models.Question;
+import com.codename1.components.Progress;
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.JSONParser;
+import com.codename1.io.Log;
+import com.codename1.io.NetworkManager;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class QuestionRepository {
 
-    public List<Question> getQuestions () {
-        List<Question> questions = new ArrayList<>();
-        questions.add(new Question("face-with-tears-of-joy-emoji.png", new String[] { "Face with tears of joy", "Something here", "Nothing Here" }, "Face with tears of joy"));
-        questions.add(new Question("love-hearts-eyes-emoji.png", new String[] { "Something here", "Love Hearts Eyes", "Nothing Here" }, "Face with tears of joy"));
-        questions.add(new Question("smiling-face-with-sunglasses-cool-emoji.png", new String[] { "Nothing Here", "Something here", "Smiling Face With Sunglasses" }, "Smiling Face With Sunglasses"));
+    public List<Map<String,String>> getQuestions () {
+        List<Map<String, String>> questions = new ArrayList<>();
+
+        try {
+            ConnectionRequest request = new ConnectionRequest("https://emojiquizapp-backend.herokuapp.com/api/v1/questions/", false);
+
+            Progress loadingQuestions = new Progress("Loading Questions", request);
+            loadingQuestions.setAutoShow(true);
+            loadingQuestions.setDisposeOnCompletion(true);
+
+            NetworkManager.getInstance().addToQueueAndWait(request);
+
+            Map<String, Object> result = new JSONParser().parseJSON(new InputStreamReader(new ByteArrayInputStream(request.getResponseData()), "UTF-8"));
+            questions = (List<Map<String, String>>) result.get("root");
+        } catch (IOException err) {
+            Log.e(err);
+        }
 
         return questions;
     }

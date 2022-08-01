@@ -19,7 +19,21 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- INJECT DEPENDENCIES -->
+        <dependency>
+  <artifactId>emojiquizapp-AdmobFullScreen</artifactId>
+  <groupId>com.aiotouch.emojiquizapp</groupId>
+  <version>1.0-SNAPSHOT</version>
+  <type>pom</type>
+</dependency>
+
+<dependency>
+  <artifactId>emojiquizapp-Connectivity</artifactId>
+  <groupId>com.aiotouch.emojiquizapp</groupId>
+  <version>1.0-SNAPSHOT</version>
+  <type>pom</type>
+</dependency>
+
+<!-- INJECT DEPENDENCIES -->
     </dependencies>
 
     <!-- The following are profiles to cover special cases -->

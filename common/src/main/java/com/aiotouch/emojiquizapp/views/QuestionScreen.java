@@ -2,8 +2,6 @@ package com.aiotouch.emojiquizapp.views;
 
 import com.aiotouch.emojiquizapp.controllers.QuestionScreenController;
 import com.codename1.ui.*;
-import com.codename1.ui.events.ActionEvent;
-import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
@@ -12,6 +10,7 @@ public class QuestionScreen extends Form {
 
     public QuestionScreenController controller;
     public Label questionImageContainer;
+    public Image questionImage;
     public ButtonGroup optionGroup;
     public RadioButton option1;
     public RadioButton option2;
@@ -53,8 +52,8 @@ public class QuestionScreen extends Form {
 
         /* EMOJI IMAGE SECTION */
         this.questionImageContainer = new Label();
-        Image questionImage = Resources.getGlobalResources().getImage("face-with-tears-of-joy-emoji.png");
-        questionImage = questionImage.scaled(500, 500);
+        this.questionImage = Resources.getGlobalResources().getImage("placeholder.png");
+        this.questionImage = this.questionImage.scaled(520, 520);
         questionImageContainer.setIcon(questionImage);
         questionImageContainer.setUIID("QuestionImageContainer");
 
@@ -102,6 +101,10 @@ public class QuestionScreen extends Form {
 
         this.nextButton.addActionListener(controller);
         this.quitButton.addActionListener(controller);
+    }
+
+    public void exitScreen() {
+        this.showBack();
     }
 
 }

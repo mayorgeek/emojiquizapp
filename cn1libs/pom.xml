@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>  <artifactId>emojiquizapp</artifactId>
+        <groupId>com.aiotouch.emojiquizapp</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.aiotouch.emojiquizapp</groupId>
+    <artifactId>emojiquizapp-cn1libs</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>emojiquizapp-cn1libs</name>
+    <profiles>
+    <!-- Profile injected by install-cn1lib goal for AdmobFullScreen cn1lib -->
+<profile>
+  <id>AdmobFullScreen.cn1lib-cn1lib</id>
+  <activation>
+    <file><exists>${basedir}/AdmobFullScreen/pom.xml</exists></file>
+  </activation>  <modules><module>AdmobFullScreen</module></modules>
+</profile>
+<profile>
+  <id>AdmobFullScreen.cn1lib-cn1lib-fromroot</id>
+  <activation>
+    <file><exists>${basedir}/cn1libs/AdmobFullScreen/pom.xml</exists></file>
+  </activation>  <modules><module>AdmobFullScreen</module></modules>
+</profile>
+
+<!-- Profile injected by install-cn1lib goal for Connectivity cn1lib -->
+<profile>
+  <id>Connectivity.cn1lib-cn1lib</id>
+  <activation>
+    <file><exists>${basedir}/Connectivity/pom.xml</exists></file>
+  </activation>  <modules><module>Connectivity</module></modules>
+</profile>
+<profile>
+  <id>Connectivity.cn1lib-cn1lib-fromroot</id>
+  <activation>
+    <file><exists>${basedir}/cn1libs/Connectivity/pom.xml</exists></file>
+  </activation>  <modules><module>Connectivity</module></modules>
+</profile>
+
+</profiles>
+</project>

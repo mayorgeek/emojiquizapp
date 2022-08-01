@@ -10,9 +10,7 @@
 /** IMPORT IMAGES TO PROJECT */
 Images {
     background-image: url(images/welcomeScreenImage.png),
-                      url(images/face-with-tears-of-joy-emoji.png),
-                      url(images/love-hearts-eyes-emoji.png),
-                      url(images/smiling-face-with-sunglasses-cool-emoji.png);
+                      url(images/placeholder.png);
 }
 
 
@@ -29,8 +27,9 @@ PageWrapper {
 
 WelcomeImageContainer {
     cn1-derive: Label;
-    margin-top: 10mm;
+    margin-top: 6mm;
     margin-bottom: 6mm;
+    text-align: center;
 }
 
 StartButton, HowToPlayButton, ShareAppButton {
@@ -43,7 +42,7 @@ StartButton, HowToPlayButton, ShareAppButton {
     font-size: 4mm;
     font-weight: bold;
     border-color: white;
-    border-radius: 25mm;
+    border-radius: 50mm;
     box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);
 }
 
@@ -54,10 +53,38 @@ HowToPlayScreen {
     background-color: #FFFFFF;
 }
 
+CustomToolbar {
+    cn1-derive: Container;
+    padding: 3mm;
+}
+
+@media platform-and {
+    CustomToolbar {
+        cn1-derive: Container;
+        padding: 3mm;
+    }
+}
+
+@media platform-ios {
+     CustomToolbar {
+         cn1-derive: Container;
+         padding: 4mm;
+         margin-top: 3mm;
+     }
+}
+
+BackIcon {
+    cn1-derive: Button;
+    color: #080010;
+    padding: 0;
+}
+
 HowToPlayScreenToolbarTitle {
+    background-color: white;
     color: var(--primary-color);
-    font-size: 3mm;
+    font-size: 4mm;
     font-weight: bold;
+    margin-left: 4mm;
 }
 
 Instruction {
@@ -114,7 +141,7 @@ ScoreLabel {
 QuestionImageContainer {
     cn1-derive: Label;
     text-align: center;
-    margin-top: 4mm;
+    margin-top: 2mm;
     margin-bottom: 4mm;
 }
 
@@ -212,7 +239,7 @@ BottomContainer {
     cn1-derive: Container;
     padding-left: 5mm;
     padding-right: 5mm;
-    margin-top: 6mm;
+    margin-top: 4mm;
 }
 
 QuitButton, NextButton {
@@ -241,4 +268,10 @@ OkButton {
     text-align: center;
     font-size: 3mm;
     color: var(--primary-color);
+}
+
+ShowScore {
+    cn1-derive: Label;
+    font-weight: bold;
+    font-size: 3mm;
 }

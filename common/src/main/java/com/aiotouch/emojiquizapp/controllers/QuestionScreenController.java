@@ -1,27 +1,23 @@
 package com.aiotouch.emojiquizapp.controllers;
 
-import com.aiotouch.emojiquizapp.models.Question;
+import com.aiotouch.emojiquizapp.AdmobInit;
 import com.aiotouch.emojiquizapp.repository.QuestionRepository;
 import com.aiotouch.emojiquizapp.views.QuestionScreen;
+import com.aiotouch.emojiquizapp.views.WelcomeScreen;
 import com.codename1.components.SpanLabel;
-import com.codename1.io.Log;
-import com.codename1.properties.Property;
-import com.codename1.properties.PropertyBase;
-import com.codename1.properties.UiBinding;
 import com.codename1.ui.*;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
-import com.codename1.ui.util.Resources;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class QuestionScreenController implements ActionListener<ActionEvent> {
 
     public QuestionScreen questionScreen;
     public String answer;
-    public List<Question> questions;
+    public List<Map<String, String>> questions;
     public String previousUIID;
     public int score;
     public int currentQuestion;
@@ -39,24 +35,39 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
         {
             if (isAnswerCorrect()) {
                 if (this.currentQuestion >= this.questions.size()) {
+                    // CHANGE BUTTON TO SUCCESS ANSWER LOOK
+                    this.questionScreen.optionGroup.getSelected().setUIID("CorrectAnswer");
+
+                    // INCREASE THE SCORE
+                    this.score += 2;
+                    this.setScore(this.score);
+
+                    // DISABLE THE BUTTONS
+                    this.questionScreen.option1.setEnabled(false);
+                    this.questionScreen.option2.setEnabled(false);
+                    this.questionScreen.option3.setEnabled(false);
+
                     Dialog quizCompleteDialog = new Dialog("", new BorderLayout());
                     quizCompleteDialog.getContentPane().setUIID("DialogContentPane");
 
+                    Container cnt = new Container();
 
                     SpanLabel body = new SpanLabel("Congratulations! You have reached the end of the quiz...");
                     body.setUIID("DialogBody");
+
+                    Label showScore = new Label("Your Score: " + this.score);
+                    showScore.setUIID("ShowScore");
 
                     Button okButton = new Button("Ok");
                     okButton.setUIID("OkButton");
                     okButton.addActionListener(action -> this.questionScreen.showBack());
 
-                    quizCompleteDialog.add(BorderLayout.NORTH, body).add(BorderLayout.SOUTH, okButton);
+                    cnt.add(body).add(showScore);
+
+                    quizCompleteDialog.add(BorderLayout.NORTH, cnt)
+                                        .add(BorderLayout.SOUTH, okButton);
 
                     quizCompleteDialog.show();
-
-//                    if (Dialog.show("", "Congratulations! You have reached the end of the quiz...", "OK", "")) {
-//                        this.questionScreen.showBack();
-//                    }
                 }
 
                 // SAVE RADIO BUTTON PREVIOUS STYLE
@@ -67,15 +78,11 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
 
                 // INCREASE THE SCORE
                 this.score += 2;
-                this.questionScreen.scoreLabel.setText("Score " + this.score);
+                this.setScore(this.score);
 
                 // DISABLE THE BUTTONS
-                this.questionScreen.option1.setEnabled(false);
-                this.questionScreen.option2.setEnabled(false);
-                this.questionScreen.option3.setEnabled(false);
 
                 // ALLOW USER TO CLICK NEXT BUTTON
-                this.questionScreen.nextButton.setEnabled(true);
             } else {
                 // SAVE RADIO BUTTON PREVIOUS STYLE
                 this.previousUIID = this.questionScreen.optionGroup.getSelected().getUIID();
@@ -84,13 +91,13 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
                 this.questionScreen.optionGroup.getSelected().setUIID("WrongAnswer");
 
                 // DISABLE THE BUTTONS
-                this.questionScreen.option1.setEnabled(false);
-                this.questionScreen.option2.setEnabled(false);
-                this.questionScreen.option3.setEnabled(false);
 
                 // ALLOW USER TO CLICK NEXT BUTTON
-                this.questionScreen.nextButton.setEnabled(true);
             }
+            this.questionScreen.option1.setEnabled(false);
+            this.questionScreen.option2.setEnabled(false);
+            this.questionScreen.option3.setEnabled(false);
+            this.questionScreen.nextButton.setEnabled(true);
         }
 
 
@@ -113,14 +120,14 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
 
     /* TO SET THE INITIAL QUESTION ON THE QUESTION SCREEN */
     public void initQuestion() {
-        Question question = this.questions.get(0);
+        Map<String, String> question = this.questions.get(0);
 
-        this.setImage(question.imageName);
+        this.setImage(question.get("imagePath"));
 
-        this.setOptions(question.options[0], question.options[1], question.options[2]);
+        this.setOptions(question.get("option1"), question.get("option2"), question.get("option3"));
 
         // SET THE ANSWER
-        this.answer = question.answer;
+        this.answer = question.get("answer");
 
         // SET THE INITIAL SCORE
         this.setScore(0);
@@ -134,30 +141,29 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
     public boolean isAnswerCorrect() {
         String selectedOption = this.questionScreen.optionGroup.getSelected().getText();
 
-        if (!selectedOption.equals(this.answer)) {
-            return false;
-        }
-
-        return true;
+        return selectedOption.equals(this.answer);
     }
 
 
     /* MOVE TO NEXT QUESTION */
     public void nextQuestion() {
+        // SHOW ADS BEFORE MOVING TO NEXT QUESTION
+        this.showFullscreenAds();
+
         // CHANGE THE BUTTON STYLE TO PREVIOUS UIID
         this.questionScreen.optionGroup.getSelected().setUIID(this.previousUIID);
 
-        Question question = this.questions.get(this.currentQuestion);
+        Map<String, String> question = this.questions.get(this.currentQuestion);
 
         // CHANGE THE IMAGE
-        this.setImage(question.imageName);
+        this.setImage(question.get("imagePath"));
 
         this.questionScreen.optionGroup.clearSelection();
 
-        this.setOptions(question.options[0], question.options[1], question.options[2]);
+        this.setOptions(question.get("option1"), question.get("option2"), question.get("option3"));
 
         // SET THE ANSWER
-        this.answer = question.answer;
+        this.answer = question.get("answer");
 
         // INCREASE THE CURRENT QUESTION NUMBER
         this.currentQuestion++;
@@ -175,22 +181,7 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
 
     /* QUIT GAME */
     public void quit() {
-        if (this.questionScreen.optionGroup.getSelected() == null) return;
-
-        this.questionScreen.optionGroup.getSelected().setUIID(this.previousUIID);
-
-        this.setScore(0);
-        this.setProgress(1);
-
-        Question question = this.questions.get(0);
-
-        this.setImage(question.imageName);
-
-        this.questionScreen.optionGroup.clearSelection();
-
-        this.setOptions(question.options[0], question.options[1], question.options[2]);
-
-        this.questionScreen.showBack();
+        new WelcomeScreen().showBack();
     }
 
 
@@ -202,16 +193,21 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
         this.questionScreen.questionProgress.setText("Question " + current + "/" + this.questions.size());
     }
 
-    public void setImage(String name) {
-        Image image = Resources.getGlobalResources().getImage(name);
-        image = image.scaled(500, 500);
-        this.questionScreen.questionImageContainer.setIcon(image);
+    public void setImage(String url) {
+        Image img = URLImage.createCachedImage("QuestionImage", url, this.questionScreen.questionImage, URLImage.FLAG_RESIZE_SCALE_TO_FILL);
+        this.questionScreen.questionImageContainer.setIcon(img);
     }
 
     public void setOptions(String text1, String text2, String text3) {
         this.questionScreen.option1.setText(text1);
         this.questionScreen.option2.setText(text2);
         this.questionScreen.option3.setText(text3);
+    }
+
+    public void showFullscreenAds() {
+        if ((this.currentQuestion % 5) == 0) {
+            new AdmobInit().admob.loadAndShow();
+        }
     }
 
 }

@@ -1,16 +1,16 @@
 package com.aiotouch.emojiquizapp.views;
 
+import com.codename1.components.ShareButton;
+import com.codename1.components.ToastBar;
 import com.codename1.ui.*;
-import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
+import org.littlemonkey.connectivity.Connectivity;
 
 public class WelcomeScreen extends Form {
-
     public WelcomeScreen() {
         this.getToolbar().hideToolbar();
         this.setLayout(BoxLayout.y());
-        this.setScrollable(false);
         this.setUIID("WelcomeScreen");
         addComponents();
     }
@@ -18,8 +18,6 @@ public class WelcomeScreen extends Form {
     private void addComponents() {
         /* WRAPPER FOR ALL COMPONENTS IN THIS FORM */
         Container pageWrapper = new Container(BoxLayout.y());
-        // SET PAGE WRAPPER SIZE TO FILL THE WHOLE FORM SPACE
-//        pageWrapper.setSize(new Dimension(pageWrapper.getParent().getWidth(), pageWrapper.getParent().getHeight()));
         pageWrapper.setUIID("PageWrapper");
 
 
@@ -36,6 +34,12 @@ public class WelcomeScreen extends Form {
         startButton.setGap(48);
         startButton.setUIID("StartButton");
         startButton.addActionListener(e -> {
+            /* CHECK USER'S CONNECTION */
+            if (!Connectivity.isConnected()) {
+                ToastBar.Status noInternet = ToastBar.showErrorMessage("No Internet Connection!", 5000);
+                return;
+            }
+
             QuestionScreen questionScreen = new QuestionScreen();
             questionScreen.show();
         });
@@ -49,7 +53,9 @@ public class WelcomeScreen extends Form {
             howToPlayScreen.show();
         });
 
-        Button shareAppButton = new Button("Share this app");
+        ShareButton shareAppButton = new ShareButton();
+        shareAppButton.setText("Share this app");
+        shareAppButton.setTextToShare("Hey friend! \n You definitely use emojis every day. \n But do you know what they really mean? \n Find out by downloading this app!");
         shareAppButton.setMaterialIcon(FontImage.MATERIAL_SHARE, 6);
         shareAppButton.setGap(48);
         shareAppButton.setUIID("ShareAppButton");

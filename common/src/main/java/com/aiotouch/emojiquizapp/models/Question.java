@@ -2,13 +2,11 @@ package com.aiotouch.emojiquizapp.models;
 
 public class Question {
 
-    public String imageName;
-    public String[] options;
+    public long id;
+    public String imagePath;
+    public String option1;
+    public String option2;
+    public String option3;
     public String answer;
 
-    public Question(String imageName, String[] options, String answer) {
-        this.imageName = imageName;
-        this.options = options;
-        this.answer = answer;
-    }
 }
