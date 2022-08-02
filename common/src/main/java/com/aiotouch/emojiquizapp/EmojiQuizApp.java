@@ -14,10 +14,11 @@ public class EmojiQuizApp extends Lifecycle {
     @Override
     public void runApp() {
 
-        AdMobManager admob = new AdmobInit().admob;
+        AdMobManager admob = null;
 
         /* CHECK USER'S NETWORK */
         if (Connectivity.isConnected()) {
+            admob = new AdmobInit().admob;
             admob.loadAd();
         } else {
             ToastBar.Status noInternet = ToastBar.showErrorMessage("No Internet Connection!", 5000);
@@ -26,7 +27,9 @@ public class EmojiQuizApp extends Lifecycle {
         WelcomeScreen welcomeScreen = new WelcomeScreen();
         welcomeScreen.show();
 
-        admob.showAdIfLoaded();
+        if (Connectivity.isConnected()) {
+            admob.showAdIfLoaded();
+        }
     }
 
 }

@@ -11,7 +11,7 @@ public class AdmobInit {
 
         String admobId = "ca-app-pub-9641594885124360/9545273136";
         if (Display.getInstance().getPlatformName().equals("ios")) {
-            admobId = "ca-app-pub-9641594885124360/9545273136";
+            admobId = "ca-app-pub-9641594885124360/5197600485";
         }
 
         admob = new AdMobManager(admobId);
