@@ -53,7 +53,7 @@ public class QuestionScreen extends Form {
         /* EMOJI IMAGE SECTION */
         this.questionImageContainer = new Label();
         this.questionImage = Resources.getGlobalResources().getImage("placeholder.png");
-        this.questionImage = this.questionImage.scaled(520, 520);
+        this.questionImage = this.questionImage.scaled(460, 460);
         questionImageContainer.setIcon(questionImage);
         questionImageContainer.setUIID("QuestionImageContainer");
 
@@ -83,7 +83,7 @@ public class QuestionScreen extends Form {
         this.nextButton = new Button();
         this.nextButton.setEnabled(false);
         this.nextButton.setUIID("NextButton");
-        this.nextButton.setMaterialIcon(FontImage.MATERIAL_ARROW_FORWARD, 5);
+        this.nextButton.setMaterialIcon(FontImage.MATERIAL_ARROW_FORWARD, 4);
 
         bottomContainer.add(BorderLayout.WEST, this.quitButton);
         bottomContainer.add(BorderLayout.EAST, this.nextButton);

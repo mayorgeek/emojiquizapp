@@ -27,8 +27,8 @@ PageWrapper {
 
 WelcomeImageContainer {
     cn1-derive: Label;
-    margin-top: 6mm;
-    margin-bottom: 6mm;
+    margin-top: 4mm;
+    margin-bottom: 5mm;
     text-align: center;
 }
 
@@ -37,9 +37,9 @@ StartButton, HowToPlayButton, ShareAppButton {
     color: var(--primary-color);
     background-color: white;
     margin-bottom: 4mm;
-    padding: 3mm;
+    padding: 2mm;
     text-align: left;
-    font-size: 4mm;
+    font-size: 3mm;
     font-weight: bold;
     border-color: white;
     border-radius: 50mm;
@@ -55,13 +55,13 @@ HowToPlayScreen {
 
 CustomToolbar {
     cn1-derive: Container;
-    padding: 3mm;
+    padding: 3mm 1mm 3mm 1mm;
 }
 
 @media platform-and {
     CustomToolbar {
         cn1-derive: Container;
-        padding: 3mm;
+        padding: 3mm 1mm 3mm 1mm;
     }
 }
 
@@ -76,7 +76,7 @@ CustomToolbar {
 BackIcon {
     cn1-derive: Button;
     color: #080010;
-    padding: 0;
+    padding: 2mm;
 }
 
 HowToPlayScreenToolbarTitle {
@@ -91,7 +91,7 @@ Instruction {
     cn1-derive: SpanLabel;
     font-size: 4mm;
     color: #080010;
-    padding: 4mm;
+    padding: 2mm 4mm 2mm 4mm;
 }
 
 
@@ -110,7 +110,6 @@ TopContainer {
     TopContainer {
         cn1-derive: Container;
         padding: 4mm;
-        margin-top: 2mm;
     }
 }
 
@@ -141,8 +140,8 @@ ScoreLabel {
 QuestionImageContainer {
     cn1-derive: Label;
     text-align: center;
-    margin-top: 2mm;
-    margin-bottom: 4mm;
+    margin-top: 1mm;
+    margin-bottom: 3mm;
 }
 
 OptionContainer {
@@ -154,9 +153,9 @@ OptionContainer {
 
 Option1, Option2, Option3 {
     cn1-derive: RadioButton;
-    padding: 4mm;
+    padding: 3mm;
     font-weight: bold;
-    font-size: 4mm;
+    font-size: 3mm;
     margin-bottom: 4mm;
     border-color: white;
     border-radius: 25mm;
@@ -165,11 +164,11 @@ Option1, Option2, Option3 {
 
 Option1.disabled, Option2.disabled, Option3.disabled {
     cn1-derive: RadioButton;
-    padding: 4mm;
+    padding: 3mm;
     background-color: white;
     color: var(--primary-color);
     font-weight: bold;
-    font-size: 4mm;
+    font-size: 3mm;
     margin-bottom: 4mm;
     border-color: white;
     border-radius: 25mm;
@@ -184,22 +183,22 @@ Option1.unselected, Option2.unselected, Option3.unselected {
 
 Option1.pressed, Option2.pressed, Option3.pressed {
     cn1-derive: RadioButton;
-    padding: 4mm;
+    padding: 3mm;
     background-color: var(--primary-color);
     color: white;
     font-weight: bold;
-    font-size: 4mm;
+    font-size: 3mm;
     border-radius: 25mm;
     box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);
 }
 
 Option1.selected, Option2.selected, Option3.selected {
     cn1-derive: RadioButton;
-    padding: 4mm;
+    padding: 3mm;
     background-color: var(--primary-color);
     color: white;
     font-weight: bold;
-    font-size: 4mm;
+    font-size: 3mm;
     border-radius: 25mm;
     box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);
 }
@@ -210,11 +209,11 @@ Option3 {
 
 CorrectAnswer {
     cn1-derive: RadioButton;
-    padding: 4mm;
+    padding: 3mm;
     background-color: var(--success-color);
     color: white;
     font-weight: bold;
-    font-size: 4mm;
+    font-size: 3mm;
     margin-bottom: 4mm;
     border-color: white;
     border-radius: 25mm;
@@ -223,11 +222,11 @@ CorrectAnswer {
 
 WrongAnswer {
     cn1-derive: RadioButton;
-    padding: 4mm;
+    padding: 3mm;
     background-color: var(--fail-color);
     color: white;
     font-weight: bold;
-    font-size: 4mm;
+    font-size: 3mm;
     margin-bottom: 4mm;
     border-color: white;
     border-radius: 25mm;
@@ -244,7 +243,7 @@ BottomContainer {
 
 QuitButton, NextButton {
     cn1-derive: Button;
-    padding: 2mm 4mm 3mm 3mm;
+    padding: 1mm 4mm 2mm 3mm;
     background-color: var(--primary-color);
     color: white;
     box-shadow: 1mm 1mm 1mm 0 rgba(0,0,0,0.1);

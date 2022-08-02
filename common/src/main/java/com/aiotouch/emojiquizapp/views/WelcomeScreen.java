@@ -24,14 +24,14 @@ public class WelcomeScreen extends Form {
         /* HERO IMAGE SECTION */
         Label welcomeImageContainer = new Label();
         Image welcomeScreenImage = Resources.getGlobalResources().getImage("welcomeScreenImage.png");
-        welcomeScreenImage = welcomeScreenImage.scaledHeight(850);  // INCREASE IMAGE HEIGHT
+        welcomeScreenImage = welcomeScreenImage.scaledHeight(600);  // INCREASE IMAGE HEIGHT
         welcomeImageContainer.setIcon(welcomeScreenImage);
         welcomeImageContainer.setUIID("WelcomeImageContainer");
 
         /* ADD BUTTONS TO WELCOME SCREEN */
         Button startButton = new Button("Start Quiz");
-        startButton.setMaterialIcon(FontImage.MATERIAL_PLAY_CIRCLE_FILLED, 8);
-        startButton.setGap(48);
+        startButton.setMaterialIcon(FontImage.MATERIAL_PLAY_CIRCLE_FILLED, 6);
+        startButton.setGap(40);
         startButton.setUIID("StartButton");
         startButton.addActionListener(e -> {
             /* CHECK USER'S CONNECTION */
@@ -45,8 +45,8 @@ public class WelcomeScreen extends Form {
         });
 
         Button howToPlayButton = new Button("How to play?");
-        howToPlayButton.setMaterialIcon(FontImage.MATERIAL_HELP_OUTLINE, 8);
-        howToPlayButton.setGap(48);
+        howToPlayButton.setMaterialIcon(FontImage.MATERIAL_HELP_OUTLINE, 6);
+        howToPlayButton.setGap(40);
         howToPlayButton.setUIID("HowToPlayButton");
         howToPlayButton.addActionListener(e -> {
             HowToPlayScreen howToPlayScreen = new HowToPlayScreen();
@@ -55,9 +55,9 @@ public class WelcomeScreen extends Form {
 
         ShareButton shareAppButton = new ShareButton();
         shareAppButton.setText("Share this app");
-        shareAppButton.setTextToShare("Hey friend! \n You definitely use emojis every day. \n But do you know what they really mean? \n Find out by downloading this app!");
-        shareAppButton.setMaterialIcon(FontImage.MATERIAL_SHARE, 6);
-        shareAppButton.setGap(48);
+        shareAppButton.setTextToShare("Hey friend! \n You definitely use emojis every day. \n But do you know what they really mean? \n Find out by downloading this app! \n\n https://emojiquizapp.netlify.app/");
+        shareAppButton.setMaterialIcon(FontImage.MATERIAL_SHARE, 5);
+        shareAppButton.setGap(40);
         shareAppButton.setUIID("ShareAppButton");
 
 

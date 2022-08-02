@@ -11,20 +11,6 @@ public class HowToPlayScreen extends Form {
         this.setScrollable(false);
         this.setUIID("HowToPlayScreen");
 
-        // ADD BACK COMMAND
-//        Command backCmd = new Command("backCommand") {
-//            @Override
-//            public void actionPerformed(ActionEvent evt) {
-//                new WelcomeScreen().showBack();
-//            }
-//        };
-//
-//        this.getToolbar().setBackCommand(backCmd);
-//
-//        // ADD TOOLBAR TITLE
-//        this.getToolbar().setTitle("How to play?");
-//        this.getToolbar().setTitleCentered(true);
-//        this.getToolbar().getTitleComponent().setUIID("HowToPlayScreenToolbarTitle");
         getToolbar().hideToolbar();
         addComponents();
     }
@@ -45,7 +31,7 @@ public class HowToPlayScreen extends Form {
 
         toolbar.add(backIcon).add(toolbarTitle);
 
-        SpanLabel instruction = new SpanLabel("Choose from the options provided, the correct name (or expression) of the emoji displayed on the screen.");
+        SpanLabel instruction = new SpanLabel("You are to choose from the options provided, the correct meaning of the emoji displayed on the screen.");
         instruction.setTextUIID("Instruction");
 
         // ADDING COMPONENTS TO THE FORM
