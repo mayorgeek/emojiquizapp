@@ -34,6 +34,11 @@
 </dependency>
 
 <!-- INJECT DEPENDENCIES -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1</version>
+        </dependency>
     </dependencies>
 
     <!-- The following are profiles to cover special cases -->

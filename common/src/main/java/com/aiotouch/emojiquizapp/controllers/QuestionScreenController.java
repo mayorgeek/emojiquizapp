@@ -120,6 +120,8 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
 
     /* TO SET THE INITIAL QUESTION ON THE QUESTION SCREEN */
     public void initQuestion() {
+        if (questions.size() < 1) return;
+
         Map<String, String> question = this.questions.get(0);
 
         this.setImage(question.get("imagePath"));

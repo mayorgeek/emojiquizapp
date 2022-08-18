@@ -28,6 +28,7 @@ public class EmojiQuizApp extends Lifecycle {
         welcomeScreen.show();
 
         if (Connectivity.isConnected()) {
+            assert admob != null;
             admob.showAdIfLoaded();
         }
     }
