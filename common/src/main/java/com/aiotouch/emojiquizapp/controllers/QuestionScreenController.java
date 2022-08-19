@@ -28,6 +28,7 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
         initQuestion();
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -80,19 +81,12 @@ public class QuestionScreenController implements ActionListener<ActionEvent> {
                 this.score += 2;
                 this.setScore(this.score);
 
-                // DISABLE THE BUTTONS
-
-                // ALLOW USER TO CLICK NEXT BUTTON
             } else {
                 // SAVE RADIO BUTTON PREVIOUS STYLE
                 this.previousUIID = this.questionScreen.optionGroup.getSelected().getUIID();
 
                 // CHANGE BUTTON TO WRONG ANSWER LOOK
                 this.questionScreen.optionGroup.getSelected().setUIID("WrongAnswer");
-
-                // DISABLE THE BUTTONS
-
-                // ALLOW USER TO CLICK NEXT BUTTON
             }
             this.questionScreen.option1.setEnabled(false);
             this.questionScreen.option2.setEnabled(false);

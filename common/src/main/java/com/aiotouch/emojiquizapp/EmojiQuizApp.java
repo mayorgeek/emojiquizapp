@@ -3,6 +3,7 @@ package com.aiotouch.emojiquizapp;
 import com.aiotouch.emojiquizapp.views.WelcomeScreen;
 import com.codename1.admob.AdMobManager;
 import com.codename1.components.ToastBar;
+import com.codename1.io.Log;
 import com.codename1.system.Lifecycle;
 import org.littlemonkey.connectivity.Connectivity;
 
@@ -27,9 +28,13 @@ public class EmojiQuizApp extends Lifecycle {
         WelcomeScreen welcomeScreen = new WelcomeScreen();
         welcomeScreen.show();
 
-        if (Connectivity.isConnected()) {
-            assert admob != null;
-            admob.showAdIfLoaded();
+        try {
+            if (Connectivity.isConnected()) {
+                assert admob != null;
+                admob.showAdIfLoaded();
+            }
+        } catch (Exception e) {
+            ToastBar.showErrorMessage("No internet Connection! Please turn on mobile data.", 5000);
         }
     }
 

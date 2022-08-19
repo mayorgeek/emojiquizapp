@@ -68,8 +68,7 @@ CustomToolbar {
 @media platform-ios {
      CustomToolbar {
          cn1-derive: Container;
-         padding: 4mm;
-         margin-top: 3mm;
+         padding: 3mm 1mm 3mm 1mm;
      }
 }
 
